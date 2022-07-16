@@ -5,7 +5,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
+
 jobs:
   build-and-deploy: 
     name: Iniciando build e deploy
@@ -13,3 +13,13 @@ jobs:
     environment: production
     steps:
     - uses: actions/checkout@master
+
+     - name: Configurando a versão do NodeJS
+      uses: actions/setup-node@v1
+      with: 
+        node-version: '16.x'
+
+ - name: Estamos instalando dependências e compilando o projeto
+      run: |
+        npm install
+        npm run build --if-preset
